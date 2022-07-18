@@ -1,0 +1,13 @@
+df2k:
+  tdsr:
+    source: '/opt/tiger/Datasets/VSR/Youku/frames_clip/LR/BD3_jpg'
+    target: '../../ntire20/Corrupted-tr-y'
+    valid:
+dped:
+  clean:
+    hr:
+      train: '/home/yzt/project/Real-SR/datasets/DPED_val/'
+      valid: '../../ntire20/DPEDiphone-va'
+datasets:
+  df2k: '/home/yzt/project/Real-SR/datasets/DPED_val/'
+  dped: '/home/yzt/project/Real-SR/datasets/DPED_val/'
