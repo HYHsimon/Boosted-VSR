@@ -1,6 +1,6 @@
 # Boosted Video Super Resolution
 **"Boosting Video Super Resolution with Patch-Based Temporal Redundancy Optimization"** 
-by Yuhao Huang, [Hang Dong](https://sites.google.com/view/hdong/%E9%A6%96%E9%A1%B5), [Jinshan Pan](https://jspan.github.io/), Chao Zhu, Yu Guo, Lean Fu, Fei Wang
+by Yuhao Huang, [Hang Dong](https://sites.google.com/view/hdong/%E9%A6%96%E9%A1%B5), [Jinshan Pan](https://jspan.github.io/), Chao Zhu, Yu Guo, Ding Liu, Lean Fu, Fei Wang
 
 ## Dependencies
 Same as the [BasicVSR](https://github.com/open-mmlab/mmediting).
