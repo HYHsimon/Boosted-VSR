@@ -6,7 +6,7 @@ by Yuhao Huang, [Hang Dong](https://sites.google.com/view/hdong/%E9%A6%96%E9%A1%
 Same as the [BasicVSR](https://github.com/open-mmlab/mmediting).
 
 ## Test
-1. Download the [Pretrained model](https://github.com/HYHsimon/Boosted-VSR/models/README.md) and [Test set](https://pan.baidu.com/s/1YvEkNOgmhQfldXzEJjcrMA?pwd=py43).
+1. Download the [Pretrained model](https://github.com/HYHsimon/Boosted-VSR/tree/master/models) and [Test set](https://pan.baidu.com/s/1YvEkNOgmhQfldXzEJjcrMA?pwd=py43).
 
 2. Run the ``test.py`` with cuda on command line: 
 ```bash
@@ -14,7 +14,7 @@ $python test.py --model Boosted_BasicVSR --resume /data/models/basicvsr_reds4.pt
 ```
 
 ## Diverse Types Videos with Irregular Trajectories Dataset(DTVIT)
-We have collected a new [DTVIT dataset](0https://pan.baidu.com/s/1mN21yiHykrMAWF40Vj2hqw?pwd=rkga) with more scenes which contain stationary
+We have collected a new [DTVIT dataset](https://pan.baidu.com/s/1mN21yiHykrMAWF40Vj2hqw?pwd=rkga) with more scenes which contain stationary
 objects and background, including live streaming, TV program, sports live, movie and television, surveillance
 camera, advertisement and first-person videos with
 irregular trajectories.
