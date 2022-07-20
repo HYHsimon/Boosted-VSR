@@ -5,11 +5,8 @@ from os.path import join
 import torch
 from torch.utils.data import DataLoader
 from importlib import import_module
-import random
 import numpy as np
 from datasets.dataset_REDS import DataValSetRNN
-import torch.multiprocessing as mp
-
 
 def str2bool(v):
     if v.lower() in ('yes', 'true', 't', 'y', '1'):
@@ -26,6 +23,7 @@ parser = argparse.ArgumentParser(description="PyTorch Train")
 # Dataset settings
 parser.add_argument('--dataset', default="C:\Datasets\VideoHazy", type=str, help='Path of the training dataset')
 parser.add_argument('--dataset_test', default="/data/hyh/VSR/DTVIT", type=str, help='Path of the test dataset')
+parser.add_argument('--save_path', default="/data/hyh/DTVIT_result", type=str, help='Path of the test result')
 parser.add_argument('--port', default="9802", type=str, help='')
 parser.add_argument('--flow_dir', default="hazy", type=str, help='Path of the training dataset(.h5)')
 parser.add_argument("--scale", default=4, type=int, help="Scale factor, Default: 4")
@@ -47,7 +45,7 @@ parser.add_argument("--start-epoch", type=int, default=1, help="Start epoch from
 parser.add_argument('--model', default='Boosted_BasicVSR', type=str, help='Import which network')
 parser.add_argument('--suffix', default='baseline_LR_flow', type=str, help='Filename of the training models')
 parser.add_argument("--resume",
-                    default="",
+                    default="/home/huangyuhao/projects/VideoSR/github/Boosted_BasicVSR/models/basicvsr_dtvit-traint2.pth",
                     type=str, help="Path to checkpoint (default: none)")
 parser.add_argument("--n_feats", type=int, default=64, help="the amount of input frames")
 parser.add_argument("--residual", type=str2bool, nargs='?', const=True, help="Activated hr_flow")
@@ -78,7 +76,7 @@ parser.add_argument("--reduction", type=str, default='mean',
                     help='Which method to calculate the optical flow. [sum | mean]')
 
 # ddp settings
-parser.add_argument('--gpu_ids', type=str, default='0', help='gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
+parser.add_argument('--gpu_ids', type=str, default='2', help='gpu ids: e.g. 0, 1, 2. use -1 for CPU')
 parser.add_argument("--para_mode", type=str, default='DDP', help='Which parallele method. [DP | DDP]')
 parser.add_argument('--local_rank', type=int, default=0)
 parser.add_argument("--verbose", type=str2bool, nargs='?', const=True, help="Display debug information or not")
@@ -105,14 +103,18 @@ def Process(opt):
     SRmodel = import_module(opt.model)
     Net = import_module('networks.' + opt.model + '_arch')
     print('Model is {}'.format(opt.model))
-    opt.device = torch.device('cuda:{}'.format(opt.gpu_ids))
+
+    if opt.gpu_ids == '-1':
+        opt.device = torch.device('cpu')
+    else:
+        opt.device = torch.device('cuda:{}'.format(opt.gpu_ids))
 
     print("Loading VSR model from checkpoint {}".format(opt.resume))
     model = Net.make_model(opt)
     model_dict = model.state_dict()
-    pretrained_dict = torch.load(opt.resume)['state_dict']
+    pretrained_dict = torch.load(opt.resume)
     for key in model_dict.keys():
-        model_dict[key] = pretrained_dict['generator.' + key]
+        model_dict[key] = pretrained_dict[key]
     model.load_state_dict(model_dict)
 
     model = model.to(opt.device)
@@ -146,11 +148,7 @@ def Process(opt):
 
         SRmodel.model_test(testloader, model, opt)
 
-    print(
-        "===>Epoch [{}], Iter [{}] Test Complete \n ===>Testing Avg. PSNR is :{:4f}".format(opt.start_epoch,
-                                                                                            opt.current_iter,
-                                                                                            np.mean(
-                                                                                                opt.psnrs_all)))
+    print("Testing Avg. PSNR is :{:4f}".format(np.mean(opt.psnrs_all)))
 
 if __name__ == '__main__':
     opt = parser.parse_args()

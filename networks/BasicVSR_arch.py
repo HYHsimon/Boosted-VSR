@@ -6,10 +6,8 @@ from mmcv.runner import load_checkpoint
 
 from mmedit.models.common import (PixelShufflePack, ResidualBlockNoBN,
                                   flow_warp, make_layer)
-from mmedit.models.registry import BACKBONES
-from mmedit.utils import get_root_logger
 
-from visualization import show_tensor_image
+from mmedit.utils import get_root_logger
 
 def make_model(args, parent=False):
     return BasicVSRNet(args)

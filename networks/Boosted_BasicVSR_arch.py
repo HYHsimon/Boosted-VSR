@@ -108,7 +108,7 @@ class BasicVSRNet(nn.Module):
 
         return flows_forward, flows_backward
 
-    def forward(self, lrs, opt):
+    def forward(self, lrs):
 
         """Forward function for BasicVSR.
                 Args:
@@ -158,7 +158,7 @@ class BasicVSRNet(nn.Module):
                 for j in range(n):
                     sr.append(feature_1[j].permute(1, 2, 0))
 
-                sr = classvsr.combine(sr, num_h, num_w, H, W, opt.Crop, opt.Step, 1)
+                sr = classvsr.combine(sr, num_h, num_w, H, W, self.Crop, self.Step, 1)
                 feat_prop = sr[0:lr_h, 0:lr_w, :].permute(2, 0, 1).unsqueeze(0)
 
                 feat_prop = flow_warp(feat_prop, flows.permute(0, 2, 3, 1))
@@ -195,7 +195,7 @@ class BasicVSRNet(nn.Module):
             for j in range(n):
                 sr.append(nbr_1[j].permute(1, 2, 0))
 
-            sr = classvsr.combine(sr, num_h, num_w, H, W, opt.Crop, opt.Step, 1)
+            sr = classvsr.combine(sr, num_h, num_w, H, W, self.Crop, self.Step, 1)
             nbr = sr[0:lr_h, 0:lr_w, :].permute(2, 0, 1).unsqueeze(0)
 
             outputs.append(feat_prop)
@@ -214,7 +214,7 @@ class BasicVSRNet(nn.Module):
                 for j in range(n):
                     sr.append(feature_1[j].permute(1, 2, 0))
 
-                sr = classvsr.combine(sr, num_h, num_w, H, W, opt.Crop, opt.Step, 1)
+                sr = classvsr.combine(sr, num_h, num_w, H, W, self.Crop, self.Step, 1)
                 feat_prop = sr[0:lr_h, 0:lr_w, :].permute(2, 0, 1).unsqueeze(0)
 
                 feat_prop = flow_warp(feat_prop, flows.permute(0, 2, 3, 1))
@@ -251,7 +251,7 @@ class BasicVSRNet(nn.Module):
             for j in range(n):
                 sr.append(nbr_1[j].permute(1, 2, 0))
 
-            sr = classvsr.combine(sr, num_h, num_w, H, W, opt.Crop, opt.Step, 1)
+            sr = classvsr.combine(sr, num_h, num_w, H, W, self.Crop, self.Step, 1)
             nbr = sr[0:lr_h, 0:lr_w, :].permute(2, 0, 1).unsqueeze(0)
 
             out = torch.cat([outputs[i], feat_prop], dim=1)
