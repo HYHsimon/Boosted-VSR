@@ -47,7 +47,7 @@ parser.add_argument("--start-epoch", type=int, default=1, help="Start epoch from
 parser.add_argument('--model', default='Boosted_BasicVSR', type=str, help='Import which network')
 parser.add_argument('--suffix', default='baseline_LR_flow', type=str, help='Filename of the training models')
 parser.add_argument("--resume",
-                    default="/home/huangyuhao/projects/VideoSR/github/Boosted_BasicVSR/models/basicvsr_reds4_20120409-0e599677.pth",
+                    default="",
                     type=str, help="Path to checkpoint (default: none)")
 parser.add_argument("--n_feats", type=int, default=64, help="the amount of input frames")
 parser.add_argument("--residual", type=str2bool, nargs='?', const=True, help="Activated hr_flow")
