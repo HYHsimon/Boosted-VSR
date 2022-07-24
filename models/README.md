@@ -10,4 +10,6 @@ Evaluated on RGB channels. The metrics are `PSNR` / `SSIM` .
 | boosted_basicvsr_Vimeo90k    |    **33.79/0.9503**      |   |
 | basicvsr_DTVIT-Train         |      33.36/0.9382        |  [model](https://pan.baidu.com/s/1Mpkl0ZyAOq3E2rrTA2sFaQ?pwd=u7e9) |
 | boosted_basicvsr_DTVIT-Train |    **33.73/0.9486**      |   |
+| edvr_REDS4                   |      32.00/0.9205        |  [model](https://pan.baidu.com/s/1l0Eq9Ojd7f9m4Y3SBBUymA?pwd=ruer) | 
+| boosted_edvr_REDS4           |    **32.93/0.9268**      |  [model](https://pan.baidu.com/s/1G7MzjwDtNOosr2VnrU2Y7w?pwd=vfay) | 
 
