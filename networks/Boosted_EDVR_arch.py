@@ -2,7 +2,7 @@ import torch
 from torch import nn as nn
 from torch.nn import functional as F
 
-from networks.archs.arch_util import (DCNv2Pack, ResidualBlockNoBN,
+from networks.utils.arch_util import (DCNv2Pack, ResidualBlockNoBN,
                                             make_layer)
 
 def make_model(args, parent=False):
