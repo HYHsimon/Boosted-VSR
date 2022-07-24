@@ -2,6 +2,8 @@
 **"Boosting Video Super Resolution with Patch-Based Temporal Redundancy Optimization"** 
 by Yuhao Huang, [Hang Dong](https://sites.google.com/view/hdong/%E9%A6%96%E9%A1%B5), [Jinshan Pan](https://jspan.github.io/), Chao Zhu, Yu Guo, Ding Liu, Lean Fu, Fei Wang
 
+[paper](https://arxiv.org/abs/2207.08674)
+
 ## Dependencies
 Boosted BasicVSR and Boosted EDVR are same as the [BasicVSR](https://github.com/open-mmlab/mmediting) and [EDVR](https://github.com/xinntao/EDVR), respectively.
 
